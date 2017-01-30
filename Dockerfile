@@ -7,11 +7,11 @@ ADD $MAXWELL_URL /root/
 RUN tar -zxvf /root/maxwell-${VERSION}.tar.gz
 RUN rm /root/maxwell-${VERSION}.tar.gz
 RUN mv /maxwell-${VERSION} /code
-
+ADD ./start.sh /start.sh
 WORKDIR /code
 
 ENV DB_HOST=db
 ENV DB_USER=maxwell
 ENV DB_PASS=maxwell
 
-CMD ["./bin/maxwell", "--user=${DB_USER}", "--password=${DB_PASS}", "--host=${DB_HOST}", "--producer=stdout"]
+CMD ["/start.sh"]
